@@ -18,8 +18,27 @@ namespace proyecto1.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
+            return View();
+        }*/
+
+        public IActionResult Index(LogIn login)
+        {
+            if (ModelState.IsValid)
+            {
+                //codigo de validacion
+                return RedirectToAction("LoginOK");
+            }
+            else
+            {
+                return View(login);
+            }
+        }
+
+        public ActionResult LoginOk()
+        {
+            //Codigo de resultado de validacion
             return View();
         }
 

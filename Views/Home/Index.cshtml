@@ -2,7 +2,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model LogIn
+
+    <form class="login">
+        <div class="row">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <div class="col-md-3 form-horizontal">
+                    <br />
+                    @Html.LabelFor(x => x.Email, new { @class = "" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger" })
+                    <br />
+
+                    @Html.LabelFor(x => x.Password)
+                    <div class="input-group">
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                       
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger" })
+                    <br />
+
+                    <button class="btn btn-primary" type="submit">
+                        Iniciar sesión
+                    </button>
+
+                    <div class="checkbox-inline pull-right">
+                        @Html.CheckBoxFor(x => x.RememberMe, new { @class = "" })
+                        @Html.LabelFor(x => x.RememberMe, new { @class = "" })
+                    </div>
+                    <br />
+                </div>
+            }
+        </div>
+    </form>
