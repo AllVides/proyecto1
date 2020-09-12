@@ -56,11 +56,16 @@ namespace proyecto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdUsuario,nombre,apellido,username,nac,contraseña,email,pais")] Usuario usuario)
         {
+
+            if (_context.Usuario.Any(a => a.username == usuario.username))
+            {
+                ModelState.AddModelError("username", "Ya existe un artículo con este código");
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login","Home");
             }
             return View(usuario);
         }

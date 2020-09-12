@@ -8,18 +8,14 @@ namespace proyecto1.Models
 {
     public class LogIn
     {
-        [Display(Name = "Correo electrónico")]
+        [Display(Name = "Usuario")]
         [Required(ErrorMessage = "Este campo es requerido.")]
-        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*",
-            ErrorMessage = "Dirección de Correo electrónico incorrecta.")]
-        [StringLength(100, ErrorMessage = "Longitud máxima 100")]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string User { get; set; }
 
         [Display(Name = "Contraseña")]
         [Required(ErrorMessage = "Este campo es requerido.")]
-        [StringLength(15, ErrorMessage = "Longitud entre 6 y 15 caracteres.",
-                      MinimumLength = 6)]
+        [StringLength(8, ErrorMessage = "Longitud entre 2 y 8 caracteres.",
+                      MinimumLength = 2)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

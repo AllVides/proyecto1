@@ -5,30 +5,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using proyecto1.Models;
+using proyecto1.Data;
 
 namespace proyecto1.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly OContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, OContext context)
         {
             _logger = logger;
+            _context = context;
+
         }
 
-        /*public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
-        }*/
+        }
 
-        public IActionResult Index(LogIn login)
+        public async Task<IActionResult> Login(LogIn login)
         {
             if (ModelState.IsValid)
             {
-                //codigo de validacion
-                return RedirectToAction("LoginOK");
+                string usuario = login.User;
+                string password = login.Password;
+
+                var user = _context.Usuario.Where(u => u.username == usuario).FirstOrDefault();
+                var pass = _context.Usuario.Where(u => u.contraseña == password).FirstOrDefault();
+
+
+                if (user == pass)
+                {
+                    return RedirectToAction("LoginOK");
+                }
+                
+
+                return View(login);
             }
             else
             {
@@ -39,7 +56,7 @@ namespace proyecto1.Controllers
         public ActionResult LoginOk()
         {
             //Codigo de resultado de validacion
-            return View();
+            return View("Bandeja", "Juego");
         }
 
         public IActionResult Privacy()
