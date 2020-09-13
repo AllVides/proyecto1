@@ -28,7 +28,7 @@ namespace proyecto1.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Login(LogIn login)
+        public IActionResult Login(LogIn login)
         {
             if (ModelState.IsValid)
             {

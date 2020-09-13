@@ -59,7 +59,7 @@ namespace proyecto1.Controllers
 
             if (_context.Usuario.Any(a => a.username == usuario.username))
             {
-                ModelState.AddModelError("username", "Ya existe un artículo con este código");
+                ModelState.AddModelError("username", "Este sueste usaurio ya existe");
             }
             if (ModelState.IsValid)
             {
