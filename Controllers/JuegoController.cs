@@ -10,14 +10,14 @@ using proyecto1.Models;
 using proyecto1.Data;
 using System.Xml;
 using System.Windows.Input;
-
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace proyecto1.Controllers
 {
 
     public class JuegoController : Controller
     {
-
         public JuegoController( )
         {
             
@@ -26,6 +26,8 @@ namespace proyecto1.Controllers
         }
         public IActionResult Bandeja()
         {
+            
+            ViewData["FileName"] = FileName;
             return View();
         }
 
@@ -33,47 +35,36 @@ namespace proyecto1.Controllers
         {
             return View();
         }
+       
         [HttpPost]
-        public ActionResult CargarXml(/*HttpPostedFileBase file*/)
+        public IActionResult CargarXml(IFormFile upload)
         {
-
-            /*
-            if (file.ContentLength > 0)
+            if (upload != null)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                file.SaveAs(path);
-            }
-
-
-            
-            XmlReader reader = XmlReader.Create(nombre);
-            while (reader.Read())
-            {
-                if (reader.IsStartElement())
+                upload.OpenReadStream();
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(upload.ToString());
+                if (xml.SelectSingleNode("color").InnerText == "blanco")
                 {
-                    //return only when you have START tag  
-                    switch (reader.Name.ToString())
-                    {
-                        case "mercado":
-                            textBox1.AppendText("Frutas del mercado: \r\n");
-                            break;
-                        case "nombre":
-                            textBox1.AppendText("Nombre de la Fruta: " + reader.ReadString() + "\r\n");
-                            break;
-                        case "color":
-                            textBox1.AppendText("Color de la Fruta: " + reader.ReadString() + "\r\n");
-                            break;
-                        case "tamanio":
-                            textBox1.AppendText("Tamaño de la Fruta: " + reader.ReadString() + "\r\n\r\n");
-                            break;
-                    }
-                }
+                    ViewData["FileName"] = "blanco";
+                };
+                
+                
+
+                
             }
-            */
-            return View("Tablero", "Juego");
+            else
+            {
+                ViewData["FileName"] = "empty file";
+            }
+
+            return View("Bandeja");
         }
 
-        
+        public string FileName { get; set; }
+
+       
+
+
     }
 }
