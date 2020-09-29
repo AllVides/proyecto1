@@ -3,27 +3,22 @@
     ViewData["Title"] = "Bandeja";
 }
 <h1>Bandeja</h1>
-
-<a asp-controller="Juego" asp-action="Tablero">Inicia un juego.</a>
-
 <div class="text-center">
-    <h1 class="display-4">
-        The file name is <br/>
-                         
-                             @ViewData["FileName"]
-                         
-
-
-    </h1>
+    <h2><a asp-controller="Juego" asp-action="Tablero">Nuevo Juego</a></h2>
+</div>
+<div class="text-center">
+    <h2 class="display-4">
+        Elige la partida que deseas cargar:
+    </h2>
 
     <form method="post" action="" enctype="multipart/form-data">
         <div class="form-group">
-            <p>Upload one or more files using this form:</p>
+            
             <input type="file" name="upload" />
         </div>
         <div class="form-group">
 
-            <input type="submit" value="CargarXml" name="CargarXml" asp-controller="Juego" asp-action="CargarXml" />
+            <input type="submit" value="Iniciar Juego" name="CargarXml" asp-controller="Juego" asp-action="CargarXml" />
         </div>
     </form>
 

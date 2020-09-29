@@ -36,10 +36,12 @@ namespace proyecto1.Controllers
                 string password = login.Password;
 
                 var user = _context.Usuario.Where(u => u.username == usuario).FirstOrDefault();
-                var pass = _context.Usuario.Where(u => u.contraseña == password).FirstOrDefault();
+                if (user == null)
+                {
+                    return View(login);
+                }
 
-
-                if (user == pass)
+                if (user.contraseña == password)
                 {
                     return RedirectToAction("LoginOK");
                 }
@@ -56,7 +58,7 @@ namespace proyecto1.Controllers
         public ActionResult LoginOk()
         {
             //Codigo de resultado de validacion
-            return View("Bandeja", "Juego");
+            return RedirectToAction("Bandeja","Juego");
         }
 
         public IActionResult Privacy()

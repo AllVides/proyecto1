@@ -12,6 +12,7 @@ using System.Xml;
 using System.Windows.Input;
 using System.Web;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace proyecto1.Controllers
 {
@@ -31,6 +32,8 @@ namespace proyecto1.Controllers
             return View();
         }
 
+        public String FileName { get; set; }
+
         public IActionResult Tablero()
         {
             return View();
@@ -41,27 +44,40 @@ namespace proyecto1.Controllers
         {
             if (upload != null)
             {
-                upload.OpenReadStream();
-                XmlDocument xml = new XmlDocument();
-                xml.LoadXml(upload.ToString());
-                if (xml.SelectSingleNode("color").InnerText == "blanco")
+                StreamReader reader = new StreamReader(upload.OpenReadStream());
+                string document = "";
+                string line;
+                do
                 {
-                    ViewData["FileName"] = "blanco";
-                };
-                
-                
+                    line = reader.ReadLine();
+                    document += line;
+                } while (line != null);
 
-                
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(document);
+                XmlNodeList nodos = xml.SelectNodes("//tablero/ficha");
+                String fichas ="";
+                foreach (XmlNode posicion in nodos)
+                {
+                    fichas += posicion.SelectSingleNode("color").InnerText + ",";
+                    fichas += posicion.SelectSingleNode("columna").InnerText + ",";
+                    fichas += posicion.SelectSingleNode("fila").InnerText + ";";
+                }
+
+                ViewData["Turno"] = xml.SelectSingleNode("//tablero/siguienteTiro/color").InnerText;
+                ViewData["Fichas"] = fichas;
+                ViewData["FileName"] = upload.FileName;
+               
             }
             else
             {
-                ViewData["FileName"] = "empty file";
+                ViewData["Turno"] = null;
+                ViewData["Fichas"] = null;
+                ViewData["FileName"] = null;
             }
 
-            return View("Bandeja");
+            return View("Tablero");
         }
-
-        public string FileName { get; set; }
 
        
 
