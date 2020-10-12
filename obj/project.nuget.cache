@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VrdhXKbjNM5u+gvPDOK6BGDnUQE0geKIqRQA4zO4YncHHWi/53b06jGjrhFAERTGVdSaChpdq+nJG0zh1qxgiA==",
+  "dgSpecHash": "ZecnXn2m2/nhcyFxJ83ORriIUuvi7r/1FyPtEBdrqWJOc9MaGpWLUsxWbEE0lwgT/O7fhP9Fp1vd1msipPLM2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\proyecto1\\proyecto1.csproj",
   "expectedPackageFiles": [
@@ -172,8 +172,7 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

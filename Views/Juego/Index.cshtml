@@ -4,21 +4,22 @@
 }
 <h1>Bandeja</h1>
 <div class="text-center">
-    <h2><a asp-controller="Juego" asp-action="Tablero">Nuevo Juego</a></h2>
 </div>
 <div class="text-center">
+    <h2><a asp-action="Tablero" asp-controller="Juego">Inciar Juego Nuevo</a></h2>
     <h2 class="display-4">
+        
         Elige la partida que deseas cargar:
     </h2>
 
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" asp-action="Tablero" enctype="multipart/form-data">
         <div class="form-group">
             
             <input type="file" name="upload" />
         </div>
         <div class="form-group">
 
-            <input type="submit" value="Iniciar Juego" name="CargarXml" asp-controller="Juego" asp-action="CargarXml" />
+            <input type="submit" value="Iniciar Juego"/>
         </div>
     </form>
 

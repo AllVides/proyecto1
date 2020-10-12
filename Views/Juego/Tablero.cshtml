@@ -1,41 +1,126 @@
-﻿
+﻿@model proyecto1.Models.GameLogic.Tablero;
+ 
 @{
     ViewData["Title"] = "Tablero";
 }
 
 <h1>Tablero</h1>
-<div class="text-center">
-    <div class="tabla">
-    @{
 
-        @for (int i = 0; i < 8; i++)
+<aside class="GameData">
+    <h3>Mueven @Model.colorTurno</h3>
+    <h3>#Turno @Model.numeroTurno</h3>
+    <h4>#Piezas Negras: @Model.numeroPiezas[1]</h4>
+    <h4>#Piezas Blancas: @Model.numeroPiezas[0]</h4>
+
+</aside>
+
+
+<div class="tabla">
+    @for (int i = 0; i < 9; i++)
+    {
+        @if (i == 0)
         {
-
-            @for (int j = 0; j < 8; j++)
+            @for (int j = 0; j < 9; j++)
             {
-                @if (i == 3 && j == 3)
-                {<div class="bloque negro flotar"></div>}
-                else if (i == 4 && j == 4)
+                switch (j)
+                {
+                    case 1:
+                        <div class="bloque letras flotar"><h2>A</h2></div>
+                        break;
+                    case 2:
+                        <div class="bloque letras flotar"><h2>B</h2></div>
+                        break;
+                    case 3:
+                        <div class="bloque letras flotar"><h2>C</h2></div>
+                        break;
+                    case 4:
+                        <div class="bloque letras flotar"><h2>D</h2></div>
+                        break;
+                    case 5:
+                        <div class="bloque letras flotar"><h2>E</h2></div>
+                        break;
+                    case 6:
+                        <div class="bloque letras flotar"><h2>F</h2></div>
+                        break;
+                    case 7:
+                        <div class="bloque letras flotar"><h2>G</h2></div>
+                        break;
+                    case 8:
+                        <div class="bloque letras flotar"><h2>H</h2></div>
+                        break;
+                    default:
+                        <div class="bloque letras flotar"></div>
+                        break;
+                }
+            }
+        }
+        else
+        {
+            @for (int j = 0; j < 9; j++)
+
+            {
+                @if (j == 0)
+                {
+                    switch (i)
+                    {
+                        case 1:
+                            <div class="bloque letras flotar"><h2>1</h2></div>
+                            break;
+                        case 2:
+                            <div class="bloque letras flotar"><h2>2</h2></div>
+                            break;
+                        case 3:
+                            <div class="bloque letras flotar"><h2>3</h2></div>
+                            break;
+                        case 4:
+                            <div class="bloque letras flotar"><h2>4</h2></div>
+                            break;
+                        case 5:
+                            <div class="bloque letras flotar"><h2>5</h2></div>
+                            break;
+                        case 6:
+                            <div class="bloque letras flotar"><h2>6</h2></div>
+                            break;
+                        case 7:
+                            <div class="bloque letras flotar"><h2>7</h2></div>
+                            break;
+                        case 8:
+                            <div class="bloque letras flotar"><h2>8</h2></div>
+                            break;
+                        default:
+                            <div class="bloque letras flotar"></div>
+                            break;
+                    }
+                }
+                else if (Model.cuadricula[i, j].estado == 1)
+                {
+                    <div class="bloque blanco flotar"></div>
+                }
+                else if (Model.cuadricula[i, j].estado == 2)
                 {
                     <div class="bloque negro flotar"></div>
                 }
-                else if (i == 3 && j == 4)
+                else if (Model.cuadricula[i, j].estado == 3)
                 {
-                    <div class="bloque blanco flotar"></div>
+                    <div class="bloque verde flotar">
+                        @using (Html.BeginForm("Movimiento", "Juego"))
+                        {
+                            <input type="hidden" name="lugar" value="@Model.cuadricula[i, j].identificacion" />
+                            <input type="submit" class="ficha" value=" " name="aceptarMov" />
+                        }
+                    </div>
                 }
-                else if (i == 4 && j == 3)
-                {
-                    <div class="bloque blanco flotar"></div>
-                }
-                else
+                else if (Model.cuadricula[i, j].estado == 0)
                 {
                     <div class="bloque verde flotar"></div>
+
                 }
             }
-
         }
+
     }
-    </div>
 </div>
+
+
 
 

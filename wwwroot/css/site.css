@@ -84,31 +84,77 @@ body {
 }
 
 
-.tabla{
-    display:grid;
-    grid-template-columns: repeat(8,1fr);
+
+
+.tablero {
+    width: 560px;
+    height: 560px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
     grid-gap: 0px;
-    position:center;
-    width: 480px;
+    grid-auto-rows: minmax(60px, auto);
+    grid-auto-columns: minmax(60px, auto);
 }
-.bloque{
-    border:3px solid gray;
-    width:60px;
-    height:60px;
+
+.tabla {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9,1fr);
+    grid-gap: 0px;
+    width: 450px;
+    float:left;
+    
+    
 }
+
+aside{
+    float:left;
+    height:100%;
+    width: 20%;
+}
+
+.bloque {
+    border: 3px solid gray;
+    width: 50px;
+    height: 50px;
+}
+
 .verde {
     background: green;
 }
+.letras{
+    background-color: goldenrod;
+    text-align: center;
+    font-size:20px;
+}
+
 .negro {
     background: black;
 }
-.blanco{
+
+.blanco {
     background: white;
 }
+
 .float {
     float: left;
 }
-.bloque:hover{
+
+.bloque:hover {
     background-color: yellow;
 }
 
+.ficha{
+    opacity: 25;
+    background-color: green;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    position: center;
+ 
+}
+
+.ficha:hover{
+    background-color: deepskyblue;
+}

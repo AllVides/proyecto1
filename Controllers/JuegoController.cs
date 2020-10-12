@@ -13,35 +13,76 @@ using System.Windows.Input;
 using System.Web;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using proyecto1.Models.GameLogic;
 
 namespace proyecto1.Controllers
 {
 
     public class JuegoController : Controller
     {
-        public JuegoController( )
+        public static Tablero mesa { get; set; }
+        public JuegoController()
         {
-            
-       
-
         }
-        public IActionResult Bandeja()
+
+        public IActionResult Index()
         {
-            
-            ViewData["FileName"] = FileName;
+
+
             return View();
         }
 
-        public String FileName { get; set; }
+        [HttpPost]
+        public IActionResult Movimiento(string lugar)
+        {
+            Tablero tablero = JuegoController.mesa;
+            
+            int[] posicion = tablero.Posicion(lugar);
+            tablero.AccionMovimiento(posicion[0], posicion[1]);
+            tablero.LimpiezaTablero();
+            tablero.contador();
+            tablero.MovimientosPosibles();
+            tablero.PiezasEnJuego();
+            JuegoController.mesa = tablero;
+            if (tablero.FinJuego()) { return RedirectToAction("Final"); }
+            //para trabajar los turnos en bucle
+            return View("Tablero",tablero);
+        }
+    
+        public IActionResult Final()
+        {
+            return View();
+        }
 
+        public IActionResult GuardarXml()
+        {
+            return View();
+        }
         public IActionResult Tablero()
         {
-            return View();
+            JuegoController.mesa = new Tablero();
+            JuegoController.mesa.MovimientosPosibles();
+            JuegoController.mesa.PiezasEnJuego();
+            return View(JuegoController.mesa);
         }
-       
+
         [HttpPost]
-        public IActionResult CargarXml(IFormFile upload)
+        public IActionResult Tablero(IFormFile upload)
         {
+            string[] posiciones = null;
+            posiciones = CargarXml(upload);
+            JuegoController.mesa = (posiciones == null) ? new Tablero() : new Tablero(posiciones[0], posiciones[1]);
+            JuegoController.mesa.MovimientosPosibles();
+            JuegoController.mesa.PiezasEnJuego();
+            if (JuegoController.mesa.FinJuego()) { return RedirectToAction("Final"); }
+            return View(JuegoController.mesa);
+            
+        }
+
+        public string[] CargarXml(IFormFile upload)
+        {
+            string[] valores = new string[2];
+            string posiciones = "";
             if (upload != null)
             {
                 StreamReader reader = new StreamReader(upload.OpenReadStream());
@@ -56,28 +97,24 @@ namespace proyecto1.Controllers
                 XmlDocument xml = new XmlDocument();
                 xml.LoadXml(document);
                 XmlNodeList nodos = xml.SelectNodes("//tablero/ficha");
-                String fichas ="";
+                
                 foreach (XmlNode posicion in nodos)
                 {
-                    fichas += posicion.SelectSingleNode("color").InnerText + ",";
-                    fichas += posicion.SelectSingleNode("columna").InnerText + ",";
-                    fichas += posicion.SelectSingleNode("fila").InnerText + ";";
+                     posiciones += posicion.SelectSingleNode("color").InnerText + ",";
+                     posiciones += posicion.SelectSingleNode("columna").InnerText + ",";
+                     posiciones += posicion.SelectSingleNode("fila").InnerText + ";";
                 }
 
-                ViewData["Turno"] = xml.SelectSingleNode("//tablero/siguienteTiro/color").InnerText;
-                ViewData["Fichas"] = fichas;
-                ViewData["FileName"] = upload.FileName;
-               
-            }
-            else
-            {
-                ViewData["Turno"] = null;
-                ViewData["Fichas"] = null;
-                ViewData["FileName"] = null;
-            }
+                string turno = xml.SelectSingleNode("//tablero/siguienteTiro/color").InnerText;
 
-            return View("Tablero");
+                valores[0] = posiciones;
+                valores[1] = turno;
+            }
+            return valores;
+
         }
+
+        
 
        
 
