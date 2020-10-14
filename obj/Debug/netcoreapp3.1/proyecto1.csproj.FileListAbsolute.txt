@@ -142,7 +142,6 @@ C:\Users\Lenovo\source\repos\proyecto1\bin\Debug\netcoreapp3.1\runtimes\win-x86\
 C:\Users\Lenovo\source\repos\proyecto1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Lenovo\source\repos\proyecto1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Lenovo\source\repos\proyecto1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.csprojAssemblyReference.cache
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.AssemblyInfoInputs.cache
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.AssemblyInfo.cs
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.csproj.CoreCompileInputs.cache
@@ -176,3 +175,5 @@ C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.dll
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.pdb
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Juego\Index.cshtml.g.cs
+C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Juego\Final.cshtml.g.cs
+C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\proyecto1.csprojAssemblyReference.cache

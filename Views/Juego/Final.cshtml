@@ -1,0 +1,50 @@
+﻿@model proyecto1.Models.GameLogic.Tablero;
+@{
+    ViewData["Title"] = "Final";
+}
+
+<h1>Final Partida</h1>
+
+<div class="row text-center">
+
+    <h2>
+        
+    </h2>
+    @using (Html.BeginForm("Final", "Juego"))
+    {
+        <label name="Piezas Negras">#Piezas Negras: @Model.numeroPiezas[1]</label> <br />
+        <label name="Piezas Blancas">#Piezas Blancas: @Model.numeroPiezas[0]</label>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" name="usuario" value="1" />
+        <div class="form-group">
+            <label name="Numero de Turnos" class="control-label">Numero de Turnos</label>
+            <input type="number" name="turnos" value="@Model.numeroTurno" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label name="Ganador" class="control-label">Ganador</label>
+            <input type="text" name="ganador" value="@Model.Ganador()" class="form-control" />
+        </div>
+        <div>
+            <label name="Tipo de Juego" class="control-label">Tipo de Juego</label>
+            @if (Model.vsMaquina)
+            {
+                <input type="text" name="retador" value="Solitario" class="form-control" />
+            }
+            else
+            {
+                <input type="text" name="retador" value="Versus" class="form-control" />
+            }
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

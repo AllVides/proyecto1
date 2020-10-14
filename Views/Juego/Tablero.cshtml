@@ -7,11 +7,18 @@
 <h1>Tablero</h1>
 
 <aside class="GameData">
-    <h3>Mueven @Model.colorTurno</h3>
-    <h3>#Turno @Model.numeroTurno</h3>
+    <h3>Mueve: @Model.colorTurno</h3>
+    <h3>#Turno: @Model.numeroTurno</h3>
     <h4>#Piezas Negras: @Model.numeroPiezas[1]</h4>
     <h4>#Piezas Blancas: @Model.numeroPiezas[0]</h4>
-
+    <a asp-controller="Juego" asp-action="GuardarXml"><h4>GuardarXml</h4></a>
+    @using (Html.BeginForm("Movimiento", "Juego"))
+    {
+        <input type="submit" value="FinJuego" name="lugar" />
+        <input type="submit" value="SaltarTurno" name="lugar" />
+        <input type="submit" value="AutoPlay" name="lugar" />
+    }
+    <a asp-controller="Juego" asp-action="Bandeja"><h4>Salir</h4></a>
 </aside>
 
 
@@ -61,36 +68,7 @@
             {
                 @if (j == 0)
                 {
-                    switch (i)
-                    {
-                        case 1:
-                            <div class="bloque letras flotar"><h2>1</h2></div>
-                            break;
-                        case 2:
-                            <div class="bloque letras flotar"><h2>2</h2></div>
-                            break;
-                        case 3:
-                            <div class="bloque letras flotar"><h2>3</h2></div>
-                            break;
-                        case 4:
-                            <div class="bloque letras flotar"><h2>4</h2></div>
-                            break;
-                        case 5:
-                            <div class="bloque letras flotar"><h2>5</h2></div>
-                            break;
-                        case 6:
-                            <div class="bloque letras flotar"><h2>6</h2></div>
-                            break;
-                        case 7:
-                            <div class="bloque letras flotar"><h2>7</h2></div>
-                            break;
-                        case 8:
-                            <div class="bloque letras flotar"><h2>8</h2></div>
-                            break;
-                        default:
-                            <div class="bloque letras flotar"></div>
-                            break;
-                    }
+                    <div class="bloque letras flotar"><h2>@i</h2></div>
                 }
                 else if (Model.cuadricula[i, j].estado == 1)
                 {

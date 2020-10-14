@@ -13,10 +13,34 @@ namespace proyecto1.Data
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Partida>()
+                .HasOne(p => p.Usuario)
+                .WithMany(b => b.Partidas)
+                .HasForeignKey(d => d.IdUsuario);
+
+            modelBuilder.Entity<Participante>()
+                .HasKey(c => new { c.IdUsuario, c.IdTorneo });
+
+            modelBuilder.Entity<Participante>()
+                .HasOne(p => p.Usuario)
+                .WithMany(b => b.Participantes);
+
+            modelBuilder.Entity<Participante>()
+                .HasOne(p => p.Torneo)
+                .WithMany(b => b.Participantes);
+                
+                
+        }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public DbSet<Partida> Paritda { get; set; }
+        public DbSet<Partida> Partida { get; set; }
 
-        public DbSet<Ruta> Ruta { get; set; }
+        public DbSet<Torneo> Torneo { get; set; }
+
+        public DbSet<Participante> Participante { get; set; }
+
     }
 }

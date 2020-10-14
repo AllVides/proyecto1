@@ -10,8 +10,8 @@ using proyecto1.Data;
 namespace proyecto1.Migrations
 {
     [DbContext(typeof(OContext))]
-    [Migration("20200910021601_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201013184103_partidas")]
+    partial class partidas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,31 +34,22 @@ namespace proyecto1.Migrations
                     b.Property<int?>("UsuarioIdUsuario")
                         .HasColumnType("int");
 
-                    b.HasKey("IdPartida");
+                    b.Property<string>("adversario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UsuarioIdUsuario");
-
-                    b.ToTable("Paritda");
-                });
-
-            modelBuilder.Entity("proyecto1.Models.Ruta", b =>
-                {
-                    b.Property<int>("IdPartida")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("PartidaIdPartida")
+                    b.Property<int>("numTurnos")
                         .HasColumnType("int");
 
-                    b.Property<string>("ruta")
+                    b.Property<string>("resultado")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdPartida");
 
-                    b.HasIndex("PartidaIdPartida");
+                    b.HasIndex("UsuarioIdUsuario");
 
-                    b.ToTable("Ruta");
+                    b.ToTable("Partida");
                 });
 
             modelBuilder.Entity("proyecto1.Models.Usuario", b =>
@@ -74,7 +65,8 @@ namespace proyecto1.Migrations
 
                     b.Property<string>("contraseña")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -105,13 +97,6 @@ namespace proyecto1.Migrations
                     b.HasOne("proyecto1.Models.Usuario", "Usuario")
                         .WithMany("Partidas")
                         .HasForeignKey("UsuarioIdUsuario");
-                });
-
-            modelBuilder.Entity("proyecto1.Models.Ruta", b =>
-                {
-                    b.HasOne("proyecto1.Models.Partida", null)
-                        .WithMany("Rutas")
-                        .HasForeignKey("PartidaIdPartida");
                 });
 #pragma warning restore 612, 618
         }

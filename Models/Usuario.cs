@@ -48,5 +48,6 @@ namespace proyecto1.Models
         public string pais { get; set; }
 
         public List<Partida> Partidas { get; set; }
+        public List<Participante> Participantes { get; set; }
     }
 }

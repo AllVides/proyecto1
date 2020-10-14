@@ -11,6 +11,7 @@ namespace proyecto1.Models.GameLogic
         public string colorTurno { get; set; }
         public int numeroTurno { get; set; }
         public int[] numeroPiezas { get; set; } = new int[2];
+        public bool vsMaquina { get; set; } = false;
        
         
         public Tablero()
@@ -52,6 +53,22 @@ namespace proyecto1.Models.GameLogic
             }
         }
 
+        public int[] autoPosicion()
+        {
+            for (int i = 1; i < 9; i++)
+            {
+                for (int j = 1; j < 9; j++)
+                {
+                    if (cuadricula[i, j].estado == 3)
+                    {
+                        vsMaquina = true;
+                        return new int[2] { i, j };
+                    }
+                }
+            }
+            return new int[2] { 0, 0 };
+        }
+
         public void PiezasEnJuego()
         {
             numeroPiezas[0] = 0;
@@ -86,6 +103,13 @@ namespace proyecto1.Models.GameLogic
                 }
             }
             return true;
+        }
+
+        public string Ganador()
+        {
+            string ganador = (numeroPiezas[0] == numeroPiezas[1]) ? "Empate" : 
+                (numeroPiezas[1] > numeroPiezas[0]) ? "Gana Negro" : "Gana Blanco";
+            return ganador;
         }
 
         public void MovimientosPosibles()

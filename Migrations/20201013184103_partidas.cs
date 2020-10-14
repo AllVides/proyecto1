@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace proyecto1.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class partidas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace proyecto1.Migrations
                     apellido = table.Column<string>(nullable: false),
                     username = table.Column<string>(nullable: false),
                     nac = table.Column<DateTime>(nullable: false),
-                    contraseña = table.Column<string>(nullable: false),
+                    contraseña = table.Column<string>(maxLength: 8, nullable: false),
                     email = table.Column<string>(nullable: false),
                     pais = table.Column<string>(nullable: false)
                 },
@@ -27,63 +27,38 @@ namespace proyecto1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Paritda",
+                name: "Partida",
                 columns: table => new
                 {
                     IdPartida = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<int>(nullable: false),
+                    numTurnos = table.Column<int>(nullable: false),
+                    resultado = table.Column<string>(nullable: false),
+                    adversario = table.Column<string>(nullable: false),
                     UsuarioIdUsuario = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Paritda", x => x.IdPartida);
+                    table.PrimaryKey("PK_Partida", x => x.IdPartida);
                     table.ForeignKey(
-                        name: "FK_Paritda_Usuario_UsuarioIdUsuario",
+                        name: "FK_Partida_Usuario_UsuarioIdUsuario",
                         column: x => x.UsuarioIdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Ruta",
-                columns: table => new
-                {
-                    IdPartida = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ruta = table.Column<string>(nullable: true),
-                    PartidaIdPartida = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ruta", x => x.IdPartida);
-                    table.ForeignKey(
-                        name: "FK_Ruta_Paritda_PartidaIdPartida",
-                        column: x => x.PartidaIdPartida,
-                        principalTable: "Paritda",
-                        principalColumn: "IdPartida",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_Paritda_UsuarioIdUsuario",
-                table: "Paritda",
+                name: "IX_Partida_UsuarioIdUsuario",
+                table: "Partida",
                 column: "UsuarioIdUsuario");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ruta_PartidaIdPartida",
-                table: "Ruta",
-                column: "PartidaIdPartida");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Ruta");
-
-            migrationBuilder.DropTable(
-                name: "Paritda");
+                name: "Partida");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
