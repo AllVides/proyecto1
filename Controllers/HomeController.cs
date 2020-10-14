@@ -58,7 +58,7 @@ namespace proyecto1.Controllers
         public ActionResult LoginOk()
         {
             //Codigo de resultado de validacion
-            return RedirectToAction("Bandeja","Juego");
+            return RedirectToAction("Index","Juego");
         }
 
         public IActionResult Privacy()

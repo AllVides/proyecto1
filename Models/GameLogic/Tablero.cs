@@ -222,7 +222,6 @@ namespace proyecto1.Models.GameLogic
             }
         }
 
-       
         public void AccionMovimiento(int fila, int columna)
         {
             List<int[]> fichas = new List<int[]>();
@@ -421,6 +420,7 @@ namespace proyecto1.Models.GameLogic
                         break;
                 }
                 int fila = int.Parse(aux[2]);
+                if(fila<1 || fila > 8) { fila = 0; }
                 string nombre = fila.ToString() + col.ToString();
                 cuadricula[fila,col] = new Casilla(nombre, col, fila, color);
             }

@@ -74,7 +74,6 @@ namespace proyecto1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Final(int usuario, int turnos, string ganador, string retador)
         {
-            
                 _context.Add(new Partida
                 {
                     IdUsuario = usuario,
@@ -84,7 +83,6 @@ namespace proyecto1.Controllers
                 });
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Juego");
-            
         }
 
        

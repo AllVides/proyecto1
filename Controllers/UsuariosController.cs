@@ -25,24 +25,6 @@ namespace proyecto1.Controllers
             return View(await _context.Usuario.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.IdUsuario == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
         // GET: Usuarios/Create
         public IActionResult Create()
         {
@@ -69,7 +51,25 @@ namespace proyecto1.Controllers
             }
             return View(usuario);
         }
+        /*
+         * 
+         * // GET: Usuarios/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var usuario = await _context.Usuario
+                .FirstOrDefaultAsync(m => m.IdUsuario == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -149,7 +149,7 @@ namespace proyecto1.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        */
         private bool UsuarioExists(int id)
         {
             return _context.Usuario.Any(e => e.IdUsuario == id);
