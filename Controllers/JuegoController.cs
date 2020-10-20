@@ -57,14 +57,13 @@ namespace proyecto1.Controllers
             }
             tablero.LimpiezaTablero();
             tablero.contador();
-            tablero.MovimientosPosibles();
             tablero.PiezasEnJuego();
+            tablero.MovimientosPosibles();
             JuegoController.mesa = tablero;
             //para trabajar los turnos en bucle
             return View("Tablero",tablero);
         }
 
-    
         public IActionResult Final()
         {
             return View(JuegoController.mesa);
@@ -86,12 +85,14 @@ namespace proyecto1.Controllers
         }
 
        
-        public IActionResult Tablero()
+        [HttpPost]
+        public IActionResult TableroPersonalizado(bool inverso, bool apertura)
         {
-            JuegoController.mesa = new Tablero();
+            JuegoController.mesa = new Tablero(apertura);
+            JuegoController.mesa.juegoInverso = inverso;
             JuegoController.mesa.MovimientosPosibles();
             JuegoController.mesa.PiezasEnJuego();
-            return View(JuegoController.mesa);
+            return View("Tablero",JuegoController.mesa);
         }
 
         [HttpPost]
@@ -99,7 +100,7 @@ namespace proyecto1.Controllers
         {
             string[] posiciones = null;
             posiciones = CargarXml(upload);
-            JuegoController.mesa = (posiciones == null) ? new Tablero() : new Tablero(posiciones[0], posiciones[1]);
+            JuegoController.mesa = (posiciones == null) ? new Tablero(false) : new Tablero(posiciones[0], posiciones[1]);
             JuegoController.mesa.MovimientosPosibles();
             JuegoController.mesa.PiezasEnJuego();
             if (JuegoController.mesa.FinJuego()) { return RedirectToAction("Final"); }

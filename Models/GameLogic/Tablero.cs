@@ -12,11 +12,12 @@ namespace proyecto1.Models.GameLogic
         public int numeroTurno { get; set; }
         public int[] numeroPiezas { get; set; } = new int[2];
         public bool vsMaquina { get; set; } = false;
+        public bool juegoInverso { get; set; } = false;
        
         
-        public Tablero()
+        public Tablero(bool apertura)
         {
-            this.cuadricula = this.nuevoJuego();
+            this.cuadricula = apertura? this.aperturaPersonalizada() : this.nuevoJuego();
             colorTurno = "negro";
             numeroTurno = 1;
         }
@@ -107,8 +108,16 @@ namespace proyecto1.Models.GameLogic
 
         public string Ganador()
         {
-            string ganador = (numeroPiezas[0] == numeroPiezas[1]) ? "Empate" : 
-                (numeroPiezas[1] > numeroPiezas[0]) ? "Gana Negro" : "Gana Blanco";
+            string ganador;
+            if (juegoInverso) {
+                ganador = (numeroPiezas[0] == numeroPiezas[1]) ? "Empate" :
+                    (numeroPiezas[1] < numeroPiezas[0]) ? "Gana Negro" : "Gana Blanco";
+            }
+            else
+            {
+                ganador = (numeroPiezas[0] == numeroPiezas[1]) ? "Empate" :
+                    (numeroPiezas[1] > numeroPiezas[0]) ? "Gana Negro" : "Gana Blanco";
+            }
             return ganador;
         }
 
@@ -119,6 +128,22 @@ namespace proyecto1.Models.GameLogic
             int contra = (color == "blanco") ? 2 : 1;
             bool inicio = false;
             bool continuacion = false;
+
+            //inicio posiciones para apertura personalizada
+            if (numeroPiezas[0] < 2 || numeroPiezas[1] < 2)
+            {
+                for (int i = 4; i < 6; i++)
+                {
+                    for(int j = 4; j<6; j++)
+                    {
+                        if(cuadricula[i,j].estado == 0)
+                        {
+                            cuadricula[i, j].estado = 3;
+                        }
+                    }
+                }
+                return;
+            }
             
             //horizontal-derecha
             for(int i = 1; i < 9; i++)
@@ -345,6 +370,22 @@ namespace proyecto1.Models.GameLogic
             }
             return null;
         }
+
+        public Casilla[,] aperturaPersonalizada()
+        {
+            cuadricula = new Casilla[9, 9];
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {        
+                     cuadricula[i, j] = new Casilla(i.ToString() + j.ToString(), j, i, 0);
+                    
+                }
+            }
+            return cuadricula;
+
+        }
+
         public Casilla[,] nuevoJuego()
         {
             Casilla[,] cuadricula = new Casilla[9,9];
