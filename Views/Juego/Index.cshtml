@@ -3,8 +3,10 @@
     ViewData["Title"] = "Bandeja";
 }
 <h1>Bandeja</h1>
-<div class="text-center">
-</div>
+<aside>
+    <a asp-action="Details" asp-controller="Usuarios">Datos de Usuario</a>
+    <a asp-controller="Torneo" >Torneo</a>
+</aside>
 <div class="text-center">
     <form method="post" asp-action="TableroPersonalizado">
         <h2>Juego Personalizado</h2>

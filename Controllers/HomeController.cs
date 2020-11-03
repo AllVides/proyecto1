@@ -15,6 +15,7 @@ namespace proyecto1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly OContext _context;
+        public static int Usuario;
 
         public HomeController(ILogger<HomeController> logger, OContext context)
         {
@@ -43,6 +44,7 @@ namespace proyecto1.Controllers
 
                 if (user.contraseña == password)
                 {
+                    HomeController.Usuario = user.IdUsuario;
                     return RedirectToAction("LoginOK");
                 }
                 

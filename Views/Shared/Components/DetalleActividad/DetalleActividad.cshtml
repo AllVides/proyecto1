@@ -1,0 +1,33 @@
+﻿@model IEnumerable<proyecto1.Models.Torneo>
+
+<h2>Torneos en los que has participado</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tamaño)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tamaño)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdTorneo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdTorneo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdTorneo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -51,15 +51,10 @@ namespace proyecto1.Controllers
             }
             return View(usuario);
         }
-        /*
-         * 
-         * // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Usuarios/Details/5
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            int id = HomeController.Usuario;
 
             var usuario = await _context.Usuario
                 .FirstOrDefaultAsync(m => m.IdUsuario == id);
@@ -68,8 +63,11 @@ namespace proyecto1.Controllers
                 return NotFound();
             }
 
-            return View(usuario);
+            return View("Details", usuario);
         }
+
+
+        /*
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
