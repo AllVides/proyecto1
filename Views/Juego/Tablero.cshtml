@@ -6,99 +6,10 @@
 
 <h1>Tablero</h1>
 
-<aside class="GameData">
-    <h3>Mueve: @Model.colorTurno</h3>
-    <h3>#Turno: @Model.numeroTurno</h3>
-    <h4>#Piezas Negras: @Model.numeroPiezas[1]</h4>
-    <h4>#Piezas Blancas: @Model.numeroPiezas[0]</h4>
-    <a asp-controller="Juego" asp-action="GuardarXml"><h4>GuardarXml</h4></a>
-    @using (Html.BeginForm("Movimiento", "Juego"))
-    {
-        <input type="submit" value="FinJuego" name="lugar" />
-        <input type="submit" value="SaltarTurno" name="lugar" />
-        <input type="submit" value="AutoPlay" name="lugar" />
-    }
-    <a asp-controller="Juego" asp-action="Bandeja"><h4>Salir</h4></a>
-</aside>
-
-
-<div class="tabla">
-    @for (int i = 0; i < 9; i++)
-    {
-        @if (i == 0)
-        {
-            @for (int j = 0; j < 9; j++)
-            {
-                switch (j)
-                {
-                    case 1:
-                        <div class="bloque letras flotar"><h2>A</h2></div>
-                        break;
-                    case 2:
-                        <div class="bloque letras flotar"><h2>B</h2></div>
-                        break;
-                    case 3:
-                        <div class="bloque letras flotar"><h2>C</h2></div>
-                        break;
-                    case 4:
-                        <div class="bloque letras flotar"><h2>D</h2></div>
-                        break;
-                    case 5:
-                        <div class="bloque letras flotar"><h2>E</h2></div>
-                        break;
-                    case 6:
-                        <div class="bloque letras flotar"><h2>F</h2></div>
-                        break;
-                    case 7:
-                        <div class="bloque letras flotar"><h2>G</h2></div>
-                        break;
-                    case 8:
-                        <div class="bloque letras flotar"><h2>H</h2></div>
-                        break;
-                    default:
-                        <div class="bloque letras flotar"></div>
-                        break;
-                }
-            }
-        }
-        else
-        {
-            @for (int j = 0; j < 9; j++)
-
-            {
-                @if (j == 0)
-                {
-                    <div class="bloque letras flotar"><h2>@i</h2></div>
-                }
-                else if (Model.cuadricula[i, j].estado == 1)
-                {
-                    <div class="bloque blanco flotar"></div>
-                }
-                else if (Model.cuadricula[i, j].estado == 2)
-                {
-                    <div class="bloque negro flotar"></div>
-                }
-                else if (Model.cuadricula[i, j].estado == 3)
-                {
-                    <div class="bloque verde flotar">
-                        @using (Html.BeginForm("Movimiento", "Juego"))
-                        {
-                            <input type="hidden" name="lugar" value="@Model.cuadricula[i, j].identificacion" />
-                            <input type="submit" class="ficha" value=" " name="aceptarMov" />
-                        }
-                    </div>
-                }
-                else if (Model.cuadricula[i, j].estado == 0)
-                {
-                    <div class="bloque verde flotar"></div>
-
-                }
-            }
-        }
-
-    }
+<div>
+    @await Component.InvokeAsync("TableroMovil", new { tablero = Model })
 </div>
 
-
+<a asp-controller="Juego" asp-action="Bandeja"><h4>Salir</h4></a>
 
 

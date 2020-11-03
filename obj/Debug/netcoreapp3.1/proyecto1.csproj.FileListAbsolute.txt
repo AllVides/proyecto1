@@ -178,3 +178,4 @@ C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Torne
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Details.cshtml.g.cs
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\DetalleActividad\DetalleActividad.cshtml.g.cs
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\DetalleJuegos\DetalleJuegos.cshtml.g.cs
+C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TableroMovil\TableroMovil.cshtml.g.cs

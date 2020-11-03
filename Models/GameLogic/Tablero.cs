@@ -13,6 +13,7 @@ namespace proyecto1.Models.GameLogic
         public int[] numeroPiezas { get; set; } = new int[2];
         public bool vsMaquina { get; set; } = false;
         public bool juegoInverso { get; set; } = false;
+        public bool bloqueoMovimientos { get; set; } = true;
        
         
         public Tablero(bool apertura)
@@ -129,8 +130,8 @@ namespace proyecto1.Models.GameLogic
             bool inicio = false;
             bool continuacion = false;
 
-            //inicio posiciones para apertura personalizada
-            if (numeroPiezas[0] < 2 || numeroPiezas[1] < 2)
+           /* //inicio posiciones para apertura personalizada
+            if (numeroPiezas[0] < 2 && numeroPiezas[1] < 2 && bloqueoMovimientos)
             {
                 for (int i = 4; i < 6; i++)
                 {
@@ -139,12 +140,16 @@ namespace proyecto1.Models.GameLogic
                         if(cuadricula[i,j].estado == 0)
                         {
                             cuadricula[i, j].estado = 3;
+                            if(numeroPiezas[0] == 2 && numeroPiezas[1] == 1)
+                            {
+                                bloqueoMovimientos = false;
+                            }
                         }
                     }
                 }
                 return;
             }
-            
+            */
             //horizontal-derecha
             for(int i = 1; i < 9; i++)
             {

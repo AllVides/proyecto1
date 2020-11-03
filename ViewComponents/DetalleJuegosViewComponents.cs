@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using proyecto1.Models;
 using proyecto1.Data;
 using proyecto1.Controllers;
+
 namespace proyecto1.ViewComponents
 {
     public class DetalleJuegosViewComponent : ViewComponent

@@ -89,6 +89,7 @@ namespace proyecto1.Controllers
         public IActionResult TableroPersonalizado(bool inverso, bool apertura)
         {
             JuegoController.mesa = new Tablero(apertura);
+            
             JuegoController.mesa.juegoInverso = inverso;
             JuegoController.mesa.MovimientosPosibles();
             JuegoController.mesa.PiezasEnJuego();
@@ -101,8 +102,9 @@ namespace proyecto1.Controllers
             string[] posiciones = null;
             posiciones = CargarXml(upload);
             JuegoController.mesa = (posiciones == null) ? new Tablero(false) : new Tablero(posiciones[0], posiciones[1]);
-            JuegoController.mesa.MovimientosPosibles();
+            
             JuegoController.mesa.PiezasEnJuego();
+            JuegoController.mesa.MovimientosPosibles();
             if (JuegoController.mesa.FinJuego()) { return RedirectToAction("Final"); }
             return View(JuegoController.mesa);
             
