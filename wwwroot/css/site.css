@@ -84,6 +84,65 @@ body {
 }
 
 
+.col8{
+    width: 1080px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr;
+}
+
+.col4 {
+    width: 840px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
+.col2 {
+    width: 600px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.col1 {
+    width: 360px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.row8{
+   width: 120px;
+   height: 60px;
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows:repeat(8, 1fr);
+}
+
+.row4 {
+    width: 120px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 2fr);
+}
+
+.row2 {
+    width: 120px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 4fr);
+}
+
+.row1 {
+    width: 120px;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1, 8fr);
+}
 
 
 .tablero {

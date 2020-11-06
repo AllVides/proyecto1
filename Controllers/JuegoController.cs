@@ -75,7 +75,7 @@ namespace proyecto1.Controllers
         {
                 _context.Add(new Partida
                 {
-                    IdUsuario = usuario,
+                    IdUsuario = HomeController.Usuario,
                     numTurnos = turnos,
                     resultado = ganador,
                     adversario = retador
@@ -101,7 +101,8 @@ namespace proyecto1.Controllers
         {
             string[] posiciones = null;
             posiciones = CargarXml(upload);
-            JuegoController.mesa = (posiciones == null) ? new Tablero(false) : new Tablero(posiciones[0], posiciones[1]);
+            JuegoController.mesa = (posiciones == null) ? new Tablero(false) : 
+                new Tablero(posiciones[0], posiciones[1], posiciones[2], posiciones[3],posiciones[4]);
             
             JuegoController.mesa.PiezasEnJuego();
             JuegoController.mesa.MovimientosPosibles();
@@ -112,7 +113,7 @@ namespace proyecto1.Controllers
 
         public string[] CargarXml(IFormFile upload)
         {
-            string[] valores = new string[2];
+            string[] valores = new string[5];
             string posiciones = "";
             if (upload != null)
             {
@@ -127,7 +128,7 @@ namespace proyecto1.Controllers
 
                 XmlDocument xml = new XmlDocument();
                 xml.LoadXml(document);
-                XmlNodeList nodos = xml.SelectNodes("//tablero/ficha");
+                XmlNodeList nodos = xml.SelectNodes("//partida/tablero/ficha");
                 
                 foreach (XmlNode posicion in nodos)
                 {
@@ -136,10 +137,18 @@ namespace proyecto1.Controllers
                      posiciones += posicion.SelectSingleNode("fila").InnerText + ";";
                 }
 
-                string turno = xml.SelectSingleNode("//tablero/siguienteTiro/color").InnerText;
+                string turno = xml.SelectSingleNode("//partida/tablero/siguienteTiro/color").InnerText;
+
+                string modo = xml.SelectSingleNode("//partida/Modalidad").InnerText;
+                string filas = xml.SelectSingleNode("//partida/filas").InnerText;
+                string columnas = xml.SelectSingleNode("//partida/columnas").InnerText;
+
 
                 valores[0] = posiciones;
                 valores[1] = turno;
+                valores[2] = modo;
+                valores[3] = filas;
+                valores[4] = columnas;
             }
             return valores;
 

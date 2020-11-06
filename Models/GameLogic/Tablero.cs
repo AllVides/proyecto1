@@ -22,11 +22,13 @@ namespace proyecto1.Models.GameLogic
             colorTurno = "negro";
             numeroTurno = 1;
         }
-        public Tablero(string xml, string turno)
+        public Tablero(string xml, string turno, string modo, string filas, string columnas)
         {
             this.cuadricula = this.nuevoJuego();
             this.PreCarga(xml);
-            colorTurno = turno; //ver como soluciono esto del turno
+            colorTurno = turno;
+            juegoInverso = (modo == "Inverso") ? true : false;
+
             numeroTurno = 1;
 
         }
