@@ -181,3 +181,5 @@ C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Share
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TableroMovil\TableroMovil.cshtml.g.cs
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\FiguraTorneo\Equipos16.cshtml.g.cs
 C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\FiguraTorneo\Equipos8.cshtml.g.cs
+C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\FiguraTorneo\Equipos4.cshtml.g.cs
+C:\Users\Lenovo\source\repos\proyecto1\obj\Debug\netcoreapp3.1\Razor\Views\Torneo\VistaTorneo.cshtml.g.cs

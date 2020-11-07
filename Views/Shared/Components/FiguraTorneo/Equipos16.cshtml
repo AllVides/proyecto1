@@ -2,12 +2,26 @@
 
 <div class="col8">
     <div class="row8">
-
+        <div class="posicionTorneo">@Model.dieciseis[0]</div>
+        <div class="posicionTorneo">@Model.dieciseis[1]</div>
+        <div class="posicionTorneo">@Model.dieciseis[2]</div>
+        <div class="posicionTorneo">@Model.dieciseis[3]</div>
+        <div class="posicionTorneo">@Model.dieciseis[4]</div>
+        <div class="posicionTorneo">@Model.dieciseis[5]</div>
+        <div class="posicionTorneo">@Model.dieciseis[6]</div>
+        <div class="posicionTorneo">@Model.dieciseis[7]</div>
     </div>
     <div>
-
+        @await Component.InvokeAsync("FiguraTorneo", new { torneo = Model, tamaño = 8 })
     </div>
     <div class="row8">
-
+        <div class="posicionTorneo">@Model.dieciseis[8]</div>
+        <div class="posicionTorneo">@Model.dieciseis[9]</div>
+        <div class="posicionTorneo">@Model.dieciseis[10]</div>
+        <div class="posicionTorneo">@Model.dieciseis[11]</div>
+        <div class="posicionTorneo">@Model.dieciseis[12]</div>
+        <div class="posicionTorneo">@Model.dieciseis[13]</div>
+        <div class="posicionTorneo">@Model.dieciseis[14]</div>
+        <div class="posicionTorneo">@Model.dieciseis[15]</div>
     </div>
 </div>

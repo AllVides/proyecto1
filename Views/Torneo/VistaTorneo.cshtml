@@ -1,0 +1,10 @@
+﻿@model proyecto1.Models.GameLogic.LogicaTorneo;
+
+@{
+    ViewData["Title"] = @Model.nombreTorneo;
+}
+
+<h1>@Model.nombreTorneo</h1>
+
+
+@await Component.InvokeAsync("FiguraTorneo", new { torneo = Model, tamaño = Model.tamaño })
