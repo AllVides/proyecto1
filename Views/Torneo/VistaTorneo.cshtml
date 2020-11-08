@@ -5,6 +5,7 @@
 }
 
 <h1>@Model.nombreTorneo</h1>
-
+<a asp-action="Resultado">Terminar Torneo</a>
+<a asp-action="Final">Guardar</a>
 
 @await Component.InvokeAsync("FiguraTorneo", new { torneo = Model, tamaño = Model.tamaño })

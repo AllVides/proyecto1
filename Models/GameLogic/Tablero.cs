@@ -19,6 +19,7 @@ namespace proyecto1.Models.GameLogic
         public Tablero(bool apertura)
         {
             this.cuadricula = apertura? this.aperturaPersonalizada() : this.nuevoJuego();
+            bloqueoMovimientos = apertura;
             colorTurno = "negro";
             numeroTurno = 1;
         }
@@ -28,7 +29,7 @@ namespace proyecto1.Models.GameLogic
             this.PreCarga(xml);
             colorTurno = turno;
             juegoInverso = (modo == "Inverso") ? true : false;
-
+            bloqueoMovimientos = false;
             numeroTurno = 1;
 
         }
@@ -132,7 +133,7 @@ namespace proyecto1.Models.GameLogic
             bool inicio = false;
             bool continuacion = false;
 
-           /* //inicio posiciones para apertura personalizada
+            //inicio posiciones para apertura personalizada
             if (numeroPiezas[0] < 2 && numeroPiezas[1] < 2 && bloqueoMovimientos)
             {
                 for (int i = 4; i < 6; i++)
@@ -151,7 +152,7 @@ namespace proyecto1.Models.GameLogic
                 }
                 return;
             }
-            */
+            
             //horizontal-derecha
             for(int i = 1; i < 9; i++)
             {

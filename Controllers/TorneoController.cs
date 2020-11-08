@@ -22,10 +22,10 @@ namespace proyecto1.Controllers
     {
 
         public static LogicaTorneo torneo { get; set; }
-
-        public IActionResult Index()
+        private readonly OContext _context;
+        public TorneoController(OContext context)
         {
-            return View();
+            _context = context;
         }
 
         public IActionResult VistaTorneo()
@@ -33,7 +33,7 @@ namespace proyecto1.Controllers
             TorneoController.torneo = new LogicaTorneo();
 
 
-            return View("VistaTorneo", torneo);
+            return View("VistaTorneo", TorneoController.torneo);
         }
 
         [HttpPost]
@@ -43,6 +43,33 @@ namespace proyecto1.Controllers
             TorneoController.torneo = new LogicaTorneo(valores);
 
             return View("VistaTorneo", TorneoController.torneo);
+        }
+
+        public IActionResult Resultado()
+        {
+            TorneoController.torneo.quienGana();
+            return View("VistaTorneo", TorneoController.torneo);
+        }
+
+        public async Task<IActionResult> Final()
+        {
+            _context.Add(new Torneo
+            {
+                nombre = TorneoController.torneo.nombreTorneo,
+                tamaño = TorneoController.torneo.tamaño
+            }) ;
+            _context.SaveChanges();
+
+            int idTorneo = _context.Torneo.Where(u => u.nombre == TorneoController.torneo.nombreTorneo).LastOrDefault().IdTorneo;
+            
+            _context.Add(new Participante
+            {
+                IdTorneo = idTorneo,
+                IdUsuario = HomeController.Usuario
+            }) ;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Juego");
         }
 
 

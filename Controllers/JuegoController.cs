@@ -71,7 +71,7 @@ namespace proyecto1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Final(int usuario, int turnos, string ganador, string retador)
+        public async Task<IActionResult> Final( int turnos, string ganador, string retador)
         {
                 _context.Add(new Partida
                 {

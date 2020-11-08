@@ -70,13 +70,52 @@ namespace proyecto1.Models.GameLogic
             nombreTorneo = valores[1];
         }
 
-        public void quienGana(bool ganador)
+        public void resultados4()
         {
-            if (ganador)
-            {
+            dos[0] = cuatro[0];
+            dos[1] = cuatro[2];
+            ganador = dos[1];
+        }
 
+        public void resultados8()
+        {
+            for(int i= 0; i<4; i++)
+            {
+                cuatro[i] = ocho[i * 2];
             }
         }
+
+        public void resultados16()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                ocho[i] = dieciseis[i * 2];
+            }
+        }
+
+
+        public void quienGana()
+        {
+            switch (tamaño)
+            {
+                case 4:
+                    resultados4();
+                    break;
+                case 8:
+                    resultados8();
+                    resultados4();
+
+                    break;
+                case 16:
+                    resultados16();
+                    resultados8();
+                    resultados4();
+                    break;
+                default: break;
+            }
+        }
+
+
 
     }
 }
