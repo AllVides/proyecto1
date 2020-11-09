@@ -28,6 +28,8 @@ namespace proyecto1.Controllers
             _context = context;
         }
 
+        public IActionResult Index()
+        { return View(); }
         public IActionResult VistaTorneo()
         {
             TorneoController.torneo = new LogicaTorneo();
